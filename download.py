@@ -4,7 +4,7 @@ import requests
 import shutil
 
 if sys.version_info[:2] < (3, 6):
-    raise SystemExit("Come on, I need Python 3!")
+    raise SystemExit("I need Python 3!")
 
 def download_file(url, local_filename):
     # NOTE the stream=True parameter below
@@ -30,14 +30,15 @@ total = count
 
 # Fetch the files
 count = 0
+completed = 0
 for (url,fname) in files:
-# This works great if your system knows how to run wget!! Not so great otherwise. :-)
-#    args = ["wget", "--quiet", "--no-check-certificate", url]
-#    print(' '.join(args))
-#    p = subprocess.check_output(args)
     count += 1
-    print("Downloading %d/%d %s" % (count, total, fname), end="")
-    download_file(url, fname)
+    if os.path.exists(fname) :
+        print("%d/%d Refusing to overwrite \"%s\", delete it and run me again." % (count,total,fname))
+    else:
+        print("Downloading %d/%d %s" % (count, total, fname), end="")
+        download_file(url, fname)
+        completed += 1
     print()
-
+print("***ALL DONE, %d files were downloaded.***" %completed)
 exit(-1)
