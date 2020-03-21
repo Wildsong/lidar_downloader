@@ -40,5 +40,5 @@ for (url,fname) in files:
         download_file(url, fname)
         completed += 1
     print()
-print("***ALL DONE, %d files were downloaded.***" %completed)
-exit(-1)
+print("***ALL DONE, %d files were downloaded.***" % completed)
+exit(0)
