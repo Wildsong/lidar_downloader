@@ -1,4 +1,8 @@
 #!env python
+#
+#  This one works from a CSV file
+#  and runs the las unzip program.
+#
 import os
 import subprocess
 from util import download_file
